@@ -17,7 +17,7 @@ const {
 
 export default function handler(
   _req: NextApiRequest,
-  res: NextApiResponse<InfoData>
+  res: NextApiResponse<InfoData>,
 ) {
   res.status(200).json({
     time: new Date().toISOString(),

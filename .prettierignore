@@ -1,0 +1,13 @@
+node_modules
+
+/build
+build
+/public/build
+public/build
+.env
+
+/app/styles/tailwind.css
+/kysely/db.d.ts
+.next
+__generated__/
+/coverage

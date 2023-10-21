@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ApolloProvider } from "@apollo/client";
 import Image from "next/image";
@@ -121,7 +121,8 @@ function HomePage() {
   );
 }
 
-if (__DEV__) {  // Adds messages only in a dev environment
+if (__DEV__) {
+  // Adds messages only in a dev environment
   loadDevMessages();
   loadErrorMessages();
 }

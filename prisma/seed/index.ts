@@ -1,4 +1,4 @@
-import { Post, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import prisma from "../../clients/prisma";
 
 async function main() {
@@ -29,7 +29,7 @@ async function seedUsers() {
       },
       create: user,
       update: user,
-    })
+    }),
   );
   return Promise.all(allCommands);
 }
@@ -39,6 +39,7 @@ async function seedPosts(users: User[]) {
   return prisma.post.create({
     data: {
       title: "Hello World",
+      content: "This is post content",
       user: {
         connect: {
           id: userId,

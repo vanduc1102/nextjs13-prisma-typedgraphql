@@ -17,6 +17,6 @@ const header = `
   const sdl = printSchema(schema);
   await fs.writeFile(
     `${process.cwd()}/__generated__/schema.graphql`,
-    `${header}\n${sdl}`
+    `${header}\n${sdl}`,
   );
 })();

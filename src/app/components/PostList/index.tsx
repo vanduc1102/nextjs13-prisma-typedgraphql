@@ -9,7 +9,7 @@ function PostList() {
   const { loading } = useQuery(GET_ALL_POST, {
     onCompleted(data) {
       console.log("data?.posts", data?.posts);
-      setPosts(data?.posts || []);
+      setPosts((data?.posts || []) as Post[]);
     },
   });
 

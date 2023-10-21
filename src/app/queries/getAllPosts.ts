@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from "../../../__generated__/frontend/gql";
 
-export const GET_ALL_POST = gql`
+export const GET_ALL_POST = gql(`
   query getAllPost {
     posts {
       id
@@ -15,4 +15,4 @@ export const GET_ALL_POST = gql`
       }
     }
   }
-`;
+`);

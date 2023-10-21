@@ -1,0 +1,54 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:../local-dev.db"
+}
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator typegraphql {
+    provider                 = "typegraphql-prisma"
+    output                   = "../__generated__/backend/type-graphql"
+    omitInputFieldsByDefault = ["createdAt", "updatedAt"]
+    formatGeneratedCode      = false
+}
+
+model Post {
+    id        Int      @id @default(autoincrement())
+    title     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    content   String?
+    published Boolean  @default(false)
+    authorId  Int
+    user      User     @relation(fields: [authorId], references: [id])
+    tags      Tag[]
+}
+
+model Profile {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+
+    bio    String?
+    userId Int     @unique
+    user   User    @relation(fields: [userId], references: [id])
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    name      String?
+    email     String   @unique
+    post      Post[]
+    profile   Profile?
+}
+
+model Tag {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    name      String
+    posts     Post[]
+}

@@ -6,22 +6,49 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "yarn codegen:backend && yarn codegen:frontend",
+    "codegen:graphql-schema": "ts-node --transpile-only ./graphql/generate-schema.ts",
+    "codegen:backend": "prisma generate && yarn codegen:graphql-schema",
+    "codegen:frontend": "graphql-codegen --config ./graphql-codegen.ts"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma",
+    "seed": "ts-node --transpile-only prisma/seed/index.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.6",
+    "@prisma/client": "^5.4.2",
+    "graphql": "^15.8.0",
+    "graphql-fields": "^2.0.3",
+    "graphql-scalars": "^1.22.4",
+    "graphql-yoga": "^5.0.0",
+    "next": "13.5.6",
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.6"
+    "type-graphql": "^1.1.1",
+    "typegraphql-prisma": "^0.27.1"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@graphql-codegen/add": "^5.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@types/graphql-fields": "^1.3.8",
+    "@types/node": "^20.8.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
-    "postcss": "^8",
-    "tailwindcss": "^3",
     "eslint": "^8",
-    "eslint-config-next": "13.5.6"
+    "eslint-config-next": "13.5.6",
+    "postcss": "^8",
+    "prisma": "5.4.2",
+    "reflect-metadata": "^0.1.13",
+    "tailwindcss": "^3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "npm": ">=9",
+    "node": ">=18"
   }
 }

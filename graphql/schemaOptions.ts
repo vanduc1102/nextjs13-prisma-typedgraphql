@@ -7,6 +7,7 @@ import {
   UserCrudResolver,
   UserRelationsResolver,
 } from "../__generated__/backend/type-graphql";
+import { CustomizedResolver } from "./resolvers/CustomizedResolver";
 
 const schemaOptions: BuildSchemaOptions = {
   resolvers: [
@@ -16,6 +17,7 @@ const schemaOptions: BuildSchemaOptions = {
     TagRelationsResolver,
     UserCrudResolver,
     UserRelationsResolver,
+    CustomizedResolver,
   ],
   validate: false,
 };

@@ -1,13 +1,15 @@
 "use client";
 
-import { ApolloProvider } from "@apollo/client";
+import { ApolloProvider, useMutation } from "@apollo/client";
 import Image from "next/image";
 import client from "../clients/apollo";
 import PostList from "./components/PostList";
 import { __DEV__ } from "@apollo/client/utilities/globals";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import { CUSTOMIZED2_MUTATION } from "./mutations";
 
 function HomePage() {
+  const [customized2, { loading }] = useMutation(CUSTOMIZED2_MUTATION);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -34,7 +36,17 @@ function HomePage() {
           </a>
         </div>
       </div>
-
+      <button
+        onClick={() =>
+          customized2({
+            variables: {
+              input: { field1: 1, field2: "2", field3: true },
+            },
+          })
+        }
+      >
+        Click me to test mutation
+      </button>
       <PostList />
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
